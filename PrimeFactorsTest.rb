@@ -1,40 +1,66 @@
+#test that there is a class named Prime Factors
+#test that there is one method of generate
+    #that method takes an int argument
+    #that it returns a list
+    #that list contains the prime factors of the int, in order
+
 require 'minitest/autorun'
 require './PrimeFactors'
 
 class TestPrimeFactors < Minitest::Test
 
-	def setup
-		@first_try = PrimeFactors.new(25)
-		@f = @first_try.factor
-		@second_try = PrimeFactors.new(300)
-		@g = @second_try.factor
-		@third_try = PrimeFactors.new(0)
+	def test_generates_correctly_for_1
+		x = PrimeFactors.new
+    	x = x.generate(1)
+        assert_equal [], x
 	end
 
-	def test_factor_returns_an_array
-		assert_kind_of Array, @f
-		assert_kind_of Array, @g
-    end
-
-	def test_factoring_returns_something
-		refute_empty @f
-		refute_empty @g
+	def test_generates_correctly_for_2
+		x = PrimeFactors.new
+    	x = x.generate(2)
+        assert_equal [2], x
 	end
 
-	def test_factoring_returns_a_real_thing
-		assert_includes @f, 5
-		assert_includes @g, 2
-		assert_includes @g, 3
-		assert_includes @g, 5
+	def test_generates_correctly_for_3
+		x = PrimeFactors.new
+    	x = x.generate(3)
+        assert_equal [3], x
 	end
 
-	def test_factoring_doesnt_return_wrong_thing
-		refute_includes @f, 50
-		refute_includes @g, 4
+	def test_generates_correctly_for_4
+		x = PrimeFactors.new
+    	x = x.generate(4)
+        assert_equal [2,2], x
 	end
 
-	def test_doesnt_make_things_up
-		assert_raises (ZeroDivisionError) {@third_try.factor}
+	def test_generates_correctly_for_6
+		x = PrimeFactors.new
+    	x = x.generate(6)
+        assert_equal [2,3], x
+	end
+
+	def test_generates_correctly_for_8
+		x = PrimeFactors.new
+    	x = x.generate(8)
+        assert_equal [2,2,2], x
+	end
+
+	def test_generates_correctly_for_9
+		x = PrimeFactors.new
+    	x = x.generate(9)
+        assert_equal [3,3], x
+	end
+
+	def test_generates_correctly_for_15
+		x = PrimeFactors.new
+    	x = x.generate(15)
+        assert_equal [3,5], x
+	end
+
+	def test_generates_correctly_for_30
+		x = PrimeFactors.new
+    	x = x.generate(30)
+        assert_equal [2,3,5], x
 	end
 
 end
